@@ -1,3 +1,6 @@
 .robot {
   background-color: aquamarine;
+  display: flex;
+  justify-content: center;
+  border-radius: 50% 50% 0 0;
 }
