@@ -15,7 +15,7 @@ function Field({
     let fieldRow = [];
     for (let j = 0; j < columns; j++) {
       fieldRow.push(
-        <Tile size={tileSize}>
+        <Tile size={tileSize} key={`${i}-${j}`}>
           {i == robotPosition[0] && j == robotPosition[1] && (
             <Robot size={tileSize / 1.5} direction={robotDirection} />
           )}
@@ -28,8 +28,10 @@ function Field({
   return (
     <>
       <div className={classes.field}>
-        {field.map((f) => (
-          <div className={classes.fieldRow}>{f}</div>
+        {field.map((f, i) => (
+          <div className={classes.fieldRow} key={i}>
+            {f}
+          </div>
         ))}
       </div>
     </>
