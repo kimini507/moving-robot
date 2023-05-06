@@ -9,6 +9,7 @@ function Game() {
   const [robotPosition, setRobotPosition] = useState([2, 2]);
   const [robotDirection, setRobotDirection] = useState(Direction.NORTH);
   const [rows, columns] = [5, 5];
+  const [gameLogs, setGameLogs] = useState(["The game has started!"]);
 
   function rotateRobot(rotation = Rotation.LEFT) {
     setRobotDirection((4 + robotDirection + rotation) % 4);
@@ -37,6 +38,16 @@ function Game() {
     }
   }
 
+  function reportRobot() {
+    setGameLogs([...gameLogs, generateReport()]);
+  }
+
+  function generateReport() {
+    return `Robot is at (${robotPosition[0]}, ${
+      robotPosition[1]
+    }) and is facing ${Direction.humanize(robotDirection)}`;
+  }
+
   return (
     <div className={classes.game}>
       <div className={classes.main}>
@@ -62,12 +73,18 @@ function Game() {
           >
             Right
           </button>
-          <button className={classes.gameControlButton}>Report</button>
+          <button className={classes.gameControlButton} onClick={reportRobot}>
+            Report
+          </button>
         </div>
       </div>
       <div className={classes.gameLogsContainer}>
         <div className={classes.gameLogsHeader}>Game Logs</div>
-        <div className={classes.gameLogs}>The game has started!</div>
+        <div className={classes.gameLogs}>
+          {gameLogs.map((v, i) => (
+            <div key={i}>{v}</div>
+          ))}
+        </div>
       </div>
     </div>
   );
