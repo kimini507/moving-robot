@@ -3,9 +3,13 @@ import classes from "./Field.module.css";
 import Tile from "./Tile";
 import Robot from "./Robot";
 
-import Direction from "../constants/directions";
-
-function Field({ rows = 5, columns = 5, robotPosition, tileSize = 50 }) {
+function Field({
+  rows = 5,
+  columns = 5,
+  robotPosition,
+  robotDirection,
+  tileSize = 50,
+}) {
   let field = [];
   for (let i = 0; i < rows; i++) {
     let fieldRow = [];
@@ -13,7 +17,7 @@ function Field({ rows = 5, columns = 5, robotPosition, tileSize = 50 }) {
       fieldRow.push(
         <Tile size={tileSize}>
           {i == robotPosition[0] && j == robotPosition[1] && (
-            <Robot size={tileSize / 1.5} direction={Direction.WEST} />
+            <Robot size={tileSize / 1.5} direction={robotDirection} />
           )}
         </Tile>
       );
