@@ -1,12 +1,8 @@
 import "./App.css";
-import Field from "./components/Field";
+import Game from "./pages/Game";
 
 function App() {
-  return (
-    <>
-      <Field robotPosition={[2, 2]} />
-    </>
-  );
+  return <Game />;
 }
 
 export default App;

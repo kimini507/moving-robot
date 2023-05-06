@@ -1,0 +1,43 @@
+.game {
+  display: flex;
+}
+
+.gameControls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.gameControls > * {
+  flex-grow: 1;
+}
+
+.gameControlButton {
+  background-color: darkolivegreen;
+  border: none;
+  box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.3);
+  padding: 10px 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: whitesmoke;
+}
+
+.gameControlButton:hover {
+  background-color: rgb(104, 124, 69);
+  cursor: pointer;
+}
+
+.gameControlButton:focus {
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.gameLogsContainer {
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.gameLogsHeader {
+  font-weight: bold;
+}
