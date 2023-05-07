@@ -7,18 +7,20 @@ import Direction from "../constants/directions";
 
 function Game() {
   const [robotPosition, setRobotPosition] = useState([2, 2]);
-  const [robotDirection, setRobotDirection] = useState(Direction.NORTH);
+  const [robotDirectionDegrees, setRobotDirectionDegrees] = useState(0);
   const [rows, columns] = [5, 5];
   const [gameLogs, setGameLogs] = useState(["The game has started!"]);
 
   function rotateRobot(rotation = Rotation.LEFT) {
-    setRobotDirection((4 + robotDirection + rotation) % 4);
+    setRobotDirectionDegrees(
+      robotDirectionDegrees + Rotation.degrees(rotation)
+    );
   }
 
   function moveRobot() {
     let [x, y] = robotPosition;
-
-    switch (robotDirection) {
+    const direction = Direction.fromDegrees(robotDirectionDegrees);
+    switch (direction) {
       case Direction.NORTH:
         x--;
         break;
@@ -45,7 +47,9 @@ function Game() {
   function generateReport() {
     return `Robot is at (${robotPosition[0]}, ${
       robotPosition[1]
-    }) and is facing ${Direction.humanize(robotDirection)}`;
+    }) and is facing ${Direction.fromDegrees(
+      robotDirectionDegrees
+    ).toString()}`;
   }
 
   return (
@@ -53,7 +57,7 @@ function Game() {
       <div className={classes.main}>
         <Field
           robotPosition={robotPosition}
-          robotDirection={robotDirection}
+          robotDirectionDegrees={robotDirectionDegrees}
           rows={rows}
           columns={columns}
         />

@@ -7,7 +7,7 @@ function Field({
   rows = 5,
   columns = 5,
   robotPosition,
-  robotDirection,
+  robotDirectionDegrees,
   tileSize = 50,
 }) {
   let field = [];
@@ -17,7 +17,10 @@ function Field({
       fieldRow.push(
         <Tile size={tileSize} key={`${i}-${j}`}>
           {i == robotPosition[0] && j == robotPosition[1] && (
-            <Robot size={tileSize / 1.5} direction={robotDirection} />
+            <Robot
+              size={tileSize / 1.5}
+              directionDegrees={robotDirectionDegrees}
+            />
           )}
         </Tile>
       );

@@ -1,11 +1,11 @@
 import classes from "./Robot.module.css";
-import Direction from "../constants/directions";
 
-function Robot({ size = 50, direction = Direction.NORTH }) {
+function Robot({ size = 50, directionDegrees }) {
   let robotStyle = {
     width: size,
     height: size,
-    transform: `rotate(${direction * 90}deg)`,
+    transform: `rotate(${directionDegrees}deg)`,
+    transition: "0.2s ease",
   };
 
   return <div style={robotStyle} className={classes.robot}></div>;
