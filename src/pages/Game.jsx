@@ -13,9 +13,7 @@ function Game() {
   const [gameLogs, setGameLogs] = useState(["The game has started!"]);
 
   function rotateRobot(rotation = Rotation.LEFT) {
-    setRobotDirectionDegrees(
-      robotDirectionDegrees + Rotation.degrees(rotation)
-    );
+    setRobotDirectionDegrees(robotDirectionDegrees + rotation.degrees());
   }
 
   function moveRobot() {

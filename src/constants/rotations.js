@@ -1,9 +1,13 @@
-const Rotation = {
-  LEFT: Symbol("Left"),
-  RIGHT: Symbol("Right"),
+class Rotation {
+  static LEFT = new Rotation("Left");
+  static RIGHT = new Rotation("Right");
 
-  degrees: (rotation) => {
-    switch (rotation) {
+  constructor(name) {
+    this.name = name;
+  }
+
+  degrees() {
+    switch (this) {
       case Rotation.LEFT:
         return -90;
       case Rotation.RIGHT:
@@ -11,7 +15,7 @@ const Rotation = {
       default:
         return 0;
     }
-  },
-};
+  }
+}
 
 export default Rotation;
