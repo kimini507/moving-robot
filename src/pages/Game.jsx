@@ -4,6 +4,7 @@ import Field from "../components/Field";
 import classes from "./Game.module.css";
 import Rotation from "../constants/rotations";
 import Direction from "../constants/directions";
+import LogPanel from "../components/LogPanel";
 
 function Game() {
   const [robotPosition, setRobotPosition] = useState([2, 2]);
@@ -82,14 +83,7 @@ function Game() {
           </button>
         </div>
       </div>
-      <div className={classes.gameLogsContainer}>
-        <div className={classes.gameLogsHeader}>Game Logs</div>
-        <div className={classes.gameLogs}>
-          {gameLogs.map((v, i) => (
-            <div key={i}>{v}</div>
-          ))}
-        </div>
-      </div>
+      <LogPanel logs={gameLogs} header="Game Logs" />
     </div>
   );
 }

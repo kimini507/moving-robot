@@ -1,0 +1,15 @@
+.logPanelContainer {
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.logPanelHeader {
+  font-weight: bold;
+}
+
+.logsContainer {
+  max-height: 200px;
+  overflow-y: auto;
+}
