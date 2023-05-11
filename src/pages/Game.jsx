@@ -65,24 +65,30 @@ function Game() {
           columns={columns}
         />
         <div className={classes.gameControls}>
-          <button className={classes.gameControlButton} onClick={moveRobot}>
-            Move
-          </button>
-          <button
-            className={classes.gameControlButton}
-            onClick={() => rotateRobot(Rotation.LEFT)}
-          >
-            Left
-          </button>
-          <button
-            className={classes.gameControlButton}
-            onClick={() => rotateRobot(Rotation.RIGHT)}
-          >
-            Right
-          </button>
-          <button className={classes.gameControlButton} onClick={reportRobot}>
-            Report
-          </button>
+          <div className={classes.gameControlsPartition}>
+            <button
+              className={classes.gameControlButton}
+              onClick={() => rotateRobot(Rotation.LEFT)}
+            >
+              Left
+            </button>
+            <button
+              className={classes.gameControlButton}
+              onClick={() => rotateRobot(Rotation.RIGHT)}
+            >
+              Right
+            </button>
+          </div>
+          <div className={classes.gameControlsPartition}>
+            <button className={classes.gameControlButton} onClick={moveRobot}>
+              Move
+            </button>
+          </div>
+          <div className={classes.gameControlsPartition}>
+            <button className={classes.gameControlButton} onClick={reportRobot}>
+              Report
+            </button>
+          </div>
         </div>
       </div>
       <LogPanel logs={gameLogs} header="Game Logs" />

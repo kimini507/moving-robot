@@ -1,14 +1,27 @@
 .game {
   display: flex;
+  justify-content: center;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .gameControls {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   gap: 10px;
 }
 
-.gameControls > * {
+.gameControlsPartition {
+  display: flex;
+  gap: 10px;
+}
+
+.gameControlsPartition > * {
   flex-grow: 1;
 }
 
