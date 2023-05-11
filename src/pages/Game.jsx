@@ -44,11 +44,15 @@ function Game() {
   }
 
   function generateReport() {
-    return `Robot is at (${robotPosition[0]}, ${
-      robotPosition[1]
-    }) and is facing ${Direction.fromDegrees(
+    const [x, y] = getRobotPositionFromSouthWestOrigin();
+    return `Robot is at (${x}, ${y}) and is facing ${Direction.fromDegrees(
       robotDirectionDegrees
     ).toString()}`;
+  }
+
+  function getRobotPositionFromSouthWestOrigin() {
+    const [y, x] = robotPosition;
+    return [x, rows - y - 1];
   }
 
   return (
