@@ -25,6 +25,17 @@
   flex-grow: 1;
 }
 
+.labeledInput {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.labeledInput > input {
+  align-self: stretch;
+}
+
 .gameControlButton {
   background-color: darkolivegreen;
   border: none;

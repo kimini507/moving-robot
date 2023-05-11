@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import Field from "../components/Field";
 import classes from "./Game.module.css";
@@ -11,6 +11,8 @@ function Game() {
   const [robotDirectionDegrees, setRobotDirectionDegrees] = useState(0);
   const [rows, columns] = [5, 5];
   const [gameLogs, setGameLogs] = useState(["The game has started!"]);
+  const placeInputXRef = useRef();
+  const placeInputYRef = useRef();
 
   function rotateRobot(rotation = Rotation.LEFT) {
     setRobotDirectionDegrees(robotDirectionDegrees + rotation.degrees());
@@ -55,6 +57,26 @@ function Game() {
     return [x, rows - y - 1];
   }
 
+  function placeRobot() {
+    let [x, y] = [placeInputXRef.current.value, placeInputYRef.current.value];
+
+    if (
+      x === "" ||
+      y === "" ||
+      x < 0 ||
+      y < 0 ||
+      x >= columns ||
+      y >= columns
+    ) {
+      alert(
+        `You must set valid coordinates from (0, 0) to (${columns - 1}, ${
+          rows - 1
+        })!`
+      );
+      return;
+    }
+  }
+
   return (
     <div className={classes.game}>
       <div className={classes.main}>
@@ -65,6 +87,33 @@ function Game() {
           columns={columns}
         />
         <div className={classes.gameControls}>
+          <div className={classes.gameControlsPartition}>
+            <div className={classes.labeledInput}>
+              <label htmlFor="placeInputX"> X </label>
+              <input
+                id="placeInputX"
+                type="number"
+                min="0"
+                max={rows - 1}
+                placeholder="X"
+                ref={placeInputXRef}
+              />
+            </div>
+            <div className={classes.labeledInput}>
+              <label htmlFor="placeInputY"> Y </label>
+              <input
+                id="placeInputY"
+                type="number"
+                min="0"
+                max={columns - 1}
+                placeholder="Y"
+                ref={placeInputYRef}
+              />
+            </div>
+            <button className={classes.gameControlButton} onClick={placeRobot}>
+              Place
+            </button>
+          </div>
           <div className={classes.gameControlsPartition}>
             <button
               className={classes.gameControlButton}
