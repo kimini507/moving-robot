@@ -1,6 +1,10 @@
 .field {
+  display: flex;
+  justify-content: center;
+}
+
+.fieldContainer {
   border: 1px solid darkolivegreen;
-  display: inline-block;
 }
 
 .fieldRow {

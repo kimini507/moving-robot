@@ -32,7 +32,8 @@
   align-items: center;
 }
 
-.labeledInput > input {
+.labeledInput > input,
+.labeledInput > select {
   align-self: stretch;
 }
 

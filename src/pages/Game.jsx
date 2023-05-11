@@ -7,19 +7,27 @@ import Direction from "../constants/directions";
 import LogPanel from "../components/LogPanel";
 
 function Game() {
-  const [robotPosition, setRobotPosition] = useState([2, 2]);
+  const [robotPosition, setRobotPosition] = useState([-1, -1]);
   const [robotDirectionDegrees, setRobotDirectionDegrees] = useState(0);
   const [rows, columns] = [5, 5];
   const [gameLogs, setGameLogs] = useState(["The game has started!"]);
   const placeInputXRef = useRef();
   const placeInputYRef = useRef();
+  const placeInputDirectionRef = useRef();
+
+  const isRobotPlaced = robotPosition[0] >= 0 && robotPosition[1] >= 0;
 
   function rotateRobot(rotation = Rotation.LEFT) {
+    if (!isRobotPlaced) return;
+
     setRobotDirectionDegrees(robotDirectionDegrees + rotation.degrees());
   }
 
   function moveRobot() {
+    if (!isRobotPlaced) return;
+
     let [x, y] = robotPosition;
+
     const direction = Direction.fromDegrees(robotDirectionDegrees);
     switch (direction) {
       case Direction.NORTH:
@@ -58,7 +66,8 @@ function Game() {
   }
 
   function placeRobot() {
-    let [x, y] = [placeInputXRef.current.value, placeInputYRef.current.value];
+    const [x, y] = [placeInputXRef.current.value, placeInputYRef.current.value];
+    const inputDirection = placeInputDirectionRef.current.value;
 
     if (
       x === "" ||
@@ -75,6 +84,14 @@ function Game() {
       );
       return;
     }
+
+    if (!inputDirection) {
+      alert("You must set a Direction!");
+      return;
+    }
+
+    setRobotDirectionDegrees(+inputDirection);
+    setRobotPosition([columns - x - 1, y]);
   }
 
   return (
@@ -110,6 +127,23 @@ function Game() {
                 ref={placeInputYRef}
               />
             </div>
+            <div className={classes.labeledInput}>
+              <label htmlFor="placeInputDirection"> Direction </label>
+              <select
+                id="placeInputDirection"
+                type="number"
+                min="0"
+                max={columns - 1}
+                placeholder="Direction"
+                ref={placeInputDirectionRef}
+              >
+                {Object.keys(Direction).map((d) => (
+                  <option key={d} value={Direction[d].degrees()}>
+                    {Direction[d].toString()}
+                  </option>
+                ))}
+              </select>
+            </div>{" "}
             <button className={classes.gameControlButton} onClick={placeRobot}>
               Place
             </button>

@@ -31,11 +31,13 @@ function Field({
   return (
     <>
       <div className={classes.field}>
-        {field.map((f, i) => (
-          <div className={classes.fieldRow} key={i}>
-            {f}
-          </div>
-        ))}
+        <div className={classes.fieldContainer}>
+          {field.map((f, i) => (
+            <div className={classes.fieldRow} key={i}>
+              {f}
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
